@@ -1,6 +1,6 @@
 package operations;
 
-import main.config.WebDriverWrapper;
+import config.WebDriverWrapper;
 import org.openqa.selenium.WebDriver;
 
 /**

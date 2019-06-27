@@ -1,4 +1,4 @@
-package main.config;
+package config;
 
 import operations.AutomationOperations;
 import operations.NavigationOperations;
@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.*;
 
 import java.util.List;
 import java.util.Set;
@@ -22,6 +23,7 @@ public class WebDriverWrapper implements WebDriver{
 
     // This passes in the driver to the automation singleton. This is what keeps the driver from being null
     // VERY IMPORTANT: We need to get TestNG working to run this under @BeforeClass
+    @BeforeClass
     public void initAutomationOperations() {
         AutomationOperations automationOperations = AutomationOperations.instance();
         automationOperations.navOps.init(driver);

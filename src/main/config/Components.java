@@ -1,4 +1,4 @@
-package main.config;
+package config;
 
 import operations.NavigationOperations;
 

@@ -1,6 +1,6 @@
 package operations;
 
-import main.config.Components;
+import config.Components;
 
 /**
  * This class serves as a head object for all operations that a test can use
