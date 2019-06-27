@@ -3,11 +3,12 @@ package config;
 import operations.NavigationOperations;
 
 /**
- * Created by Steve on 6/26/2019.
+ * Class for automation components to pass into the driver
  */
 public class Components {
 
     public NavigationOperations getNavigationOperations() {
         return new NavigationOperations();
     }
+
 }

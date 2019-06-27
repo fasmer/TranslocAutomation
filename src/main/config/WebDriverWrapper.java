@@ -21,14 +21,14 @@ public class WebDriverWrapper implements WebDriver{
     private static int timeout = 10;
     protected static AutomationOperations ops = AutomationOperations.instance(); //remove this static if possible
 
-    // This passes in the driver to the automation singleton. This is what keeps the driver from being null
-    // VERY IMPORTANT: We need to get TestNG working to run this under @BeforeClass
+    // This passes in the driver to the automation instance. This is what initializes the driver
     @BeforeClass
     public void initAutomationOperations() {
         AutomationOperations automationOperations = AutomationOperations.instance();
         automationOperations.navOps.init(driver);
     }
 
+    // Implement the required methods from the WebDriver interface
     @Override
     public void get(String url) {
         driver.get(url);
