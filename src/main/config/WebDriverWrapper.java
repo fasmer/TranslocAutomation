@@ -7,7 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
+import org.testng.Assert;
 
 import java.util.List;
 import java.util.Set;
@@ -17,7 +19,7 @@ import java.util.Set;
  */
 public class WebDriverWrapper implements WebDriver{
     protected WebDriver driver = new ChromeDriver();
-    private WebDriverWait wait;
+    private WebDriverWait driverWait;
     private static int timeout = 10;
     protected static AutomationOperations ops = AutomationOperations.instance(); //remove this static if possible
 
@@ -26,6 +28,10 @@ public class WebDriverWrapper implements WebDriver{
     public void initAutomationOperations() {
         AutomationOperations automationOperations = AutomationOperations.instance();
         automationOperations.navOps.init(driver);
+    }
+
+    public boolean elementExists(By by) {
+        return driver.findElement(by).isDisplayed();
     }
 
     // Implement the required methods from the WebDriver interface
