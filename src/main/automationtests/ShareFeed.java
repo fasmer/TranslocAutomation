@@ -2,27 +2,26 @@ package automationtests;
 
 import config.ResourceLocator;
 import config.WebDriverWrapper;
+import cucumber.api.java.en.*;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import cucumber.api.java.en.*;
-
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Steve on 6/28/2019.
+ * Created by Steve on 6/29/2019.
  */
-public class DuplicateFeed extends WebDriverWrapper {
-    public int numberOfFeeds;
+public class ShareFeed extends WebDriverWrapper {
+    String feedToBeShared;
 
     @Test(priority = 1)
     @Given("^User is on the Architect home view$")
-    public void login() {
+    public void homeView() {
         ops.navOps.navigateToURL(ResourceLocator.STAGING_ENV);
         ops.navOps.login("qa_user_3", "n4km@XrhP4MA");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        numberOfFeeds = ops.userOps.getNumberOfFeeds();
+        feedToBeShared = ops.userOps.getFeedName(ResourceLocator.FIRST_FEED);
     }
 
     @Test(priority = 2)
@@ -32,22 +31,23 @@ public class DuplicateFeed extends WebDriverWrapper {
     }
 
     @Test(priority = 3)
-    @And("^User selects duplicate$")
-    public void selectOverflowDuplicate() {
-        driver.findElement(By.xpath(ResourceLocator.OVERFLOW_DUPLICATE)).click();
+    @And("^User selects share$")
+    public void selectOverflowShare() {
+        driver.findElement(By.xpath(ResourceLocator.OVERFLOW_SHARE)).click();
+
     }
 
     @Test(priority = 4)
-    @And("^User confirms duplicate$")
-    public void confirmDuplicate() {
+    @And("^User confirms share$")
+    public void confirmSharePopup() {
         ops.navOps.confirmAndClosePopup();
     }
 
     @Test(priority = 5)
-    @Then("^Feed should be duplicated$")
-    public void feedDuplicationValidation() {
-        Assert.assertEquals(ops.userOps.getNumberOfFeeds(), numberOfFeeds+1);
-        Assert.assertEquals(ops.userOps.getFeedName(ResourceLocator.SECOND_FEED), ops.userOps.getFeedName(ResourceLocator.FIRST_FEED) + " Copy");
+    @Then("^Feed should be shared successfully$")
+    public void shareValidation() {
+        String sharedFeed = driver.findElement(By.xpath(ResourceLocator.SHARED_FEED_NAME)).getText();
+        Assert.assertTrue(sharedFeed.equals(feedToBeShared));
     }
 
 }

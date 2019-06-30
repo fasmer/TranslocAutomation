@@ -22,12 +22,6 @@ public class AutomationOperations {
      *  We use the component object from above to get our operation methods to pass to the driver
      */
     public NavigationOperations navOps = components.getNavigationOperations();
-
-    public void initOperations(Components components) {
-        this.components = components;
-        //This is where we initialize our components such as navOps, userOps, browser type, assertions, etc.
-
-        navOps = components.getNavigationOperations();
-    }
+    public UserOperations userOps = components.getUserOperations();
 
 }

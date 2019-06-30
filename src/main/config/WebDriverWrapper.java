@@ -1,15 +1,12 @@
 package config;
 
 import operations.AutomationOperations;
-import operations.NavigationOperations;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
-import org.testng.Assert;
 
 import java.util.List;
 import java.util.Set;
@@ -28,6 +25,12 @@ public class WebDriverWrapper implements WebDriver{
     public void initAutomationOperations() {
         AutomationOperations automationOperations = AutomationOperations.instance();
         automationOperations.navOps.init(driver);
+        automationOperations.userOps.init(driver);
+    }
+
+    @AfterClass
+    public void teardown() {
+        driver.close();
     }
 
     public boolean elementExists(By by) {

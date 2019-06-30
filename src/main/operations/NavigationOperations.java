@@ -1,11 +1,11 @@
 package operations;
 
-import config.WebDriverWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import config.ResourceLocator;
-import org.openqa.selenium.WebElement;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * A class that contains all methods for navigation around the website
@@ -26,5 +26,11 @@ public class NavigationOperations implements OperationsListener {
 
     public void navigateToURL(String url) {
         driverWrapper.navigate().to(url);
+    }
+
+    public void confirmAndClosePopup() {
+        driverWrapper.findElement(By.xpath(ResourceLocator.POPUP_CONFIRM)).click();
+        driverWrapper.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driverWrapper.findElement(By.xpath(ResourceLocator.POPUP_CLOSE)).click();
     }
 }

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default Suite]">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default Suite]">
   <test name="TranslocAutomation(failed)">
     <classes>
-      <class name="automationtests.DuplicateFeed">
+      <class name="automationtests.ShareFeed">
         <methods>
           <include name="initAutomationOperations"/>
-          <include name="login"/>
+          <include name="shareValidation"/>
+          <include name="teardown"/>
         </methods>
-      </class> <!-- automationtests.DuplicateFeed -->
+      </class> <!-- automationtests.ShareFeed -->
     </classes>
   </test> <!-- TranslocAutomation(failed) -->
 </suite> <!-- Failed suite [Default Suite] -->
